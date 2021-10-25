@@ -13,7 +13,7 @@
  *    This will contain the class definition of:
  *        BST                 : A class that represents a binary search tree
  * Author
- *    <your names here>
+ *    Alexander Dohms
  ************************************************************************/
 
 #pragma once
@@ -42,14 +42,14 @@ class BST
 {
 public:
    //
-   // Construct
+   // Construct - Finished | Alexander
    //
 
-   BST();
-   BST(const BST &  rhs);
-   BST(      BST && rhs);
-   BST(const std::initializer_list<T>& il);
-   ~BST();
+   BST() : root(nullptr), numElements(0) {}                                                                          //Default Constructor
+   BST(const BST &  rhs) : root(nullptr), numElements(0) {*this = rhs;}                                              //Copy constructor
+   BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor
+   BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
+   ~BST() {clear();}                                                                                                 //Deconstructor
 
    //
    // Assign
@@ -84,8 +84,8 @@ public:
    // Status
    //
 
-   bool   empty() const noexcept { return true; }
-   size_t size()  const noexcept { return 99;   }
+   bool   empty() const noexcept { return numElements == 0; }
+   size_t size()  const noexcept { return numElements;   }
    
 
 #ifdef DEBUG // make this visible to the unit tests
@@ -109,21 +109,12 @@ template <typename T>
 class BST <T> :: BNode
 {
 public:
-   // 
+   //
    // Construct
    //
-   BNode()
-   {
-      pLeft = pRight = this;
-   }
-   BNode(const T &  t) 
-   {
-      pLeft = pRight = this;
-   }
-   BNode(T && t) 
-   {  
-      pLeft = pRight = this;
-   }
+    BNode() : pLeft(nullptr), pRight(nullptr), pParent(nullptr), data(T()) {}               // Default Constructor
+    BNode(const T& t) : pParent(nullptr), pLeft(nullptr), pRight(nullptr), data(t) {}      // Copy Constructor
+    BNode(T&& t) : pLeft(nullptr), pRight(nullptr), data(std::move(t)) {}                  // Move Constructor
 
    //
    // Insert
@@ -158,48 +149,6 @@ public:
  *********************************************
  *********************************************
  *********************************************/
-
-
- /*********************************************
-  * BST :: DEFAULT CONSTRUCTOR
-  ********************************************/
-template <typename T>
-BST <T> ::BST()
-{
-   numElements = 99;
-   root = new BNode;
-}
-
-/*********************************************
- * BST :: COPY CONSTRUCTOR
- * Copy one tree to another
- ********************************************/
-template <typename T>
-BST <T> :: BST ( const BST<T>& rhs) 
-{
-   numElements = 99;
-   root = new BNode;
-}
-
-/*********************************************
- * BST :: MOVE CONSTRUCTOR
- * Move one tree to another
- ********************************************/
-template <typename T>
-BST <T> :: BST(BST <T> && rhs) 
-{
-   numElements = 99;
-   root = new BNode;
-}
-
-/*********************************************
- * BST :: DESTRUCTOR
- ********************************************/
-template <typename T>
-BST <T> :: ~BST()
-{
-
-}
 
 
 /*********************************************
