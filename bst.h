@@ -190,8 +190,12 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
     }*/
 
     // ATTEMPT #3
+    /*BST.copy-assignment(rhs)
+        assign(root, rhs.root)
+        numElements = rhs.numElements
+    */
 
-    
+    numElements = rhs.numElements;
 
     return *this;
 }
