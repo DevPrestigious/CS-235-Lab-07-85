@@ -182,13 +182,19 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 }
 
 /*********************************************
- * BST :: SWAP
+ * BST :: SWAP - Needs Verified | Alexander [Creating the tempRoot I believe is what's breaking this, for some reason, spy doesn't like it?]
  * Swap two trees
  ********************************************/
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
-
+//   BST <T> tempRoot = rhs;
+//   rhs.root = root;
+//
+//   root = tempRoot;
+//   size_t tempElements = rhs.numElements;
+//   rhs.numElements = numElements;
+//   numElements = tempElements;
 }
 
 /*****************************************************
@@ -256,7 +262,14 @@ bool BST <T> ::erase(const T& t)
  ******************************************************
  ******************************************************
  ******************************************************/
-
+//// Putting this here so we can quickly see what data types we have.
+//// Data
+////
+//T data;                  // Actual data stored in the BNode
+//BNode* pLeft;          // Left child - smaller
+//BNode* pRight;         // Right child - larger
+//BNode* pParent;        // Parent
+//bool isRed;              // Red-black balancing stuff
  
 /******************************************************
  * BINARY NODE :: ADD LEFT
@@ -265,7 +278,7 @@ bool BST <T> ::erase(const T& t)
 template <typename T>
 void BST <T> :: BNode :: addLeft (BNode * pNode)
 {
-
+   
 }
 
 /******************************************************
@@ -285,7 +298,7 @@ void BST <T> :: BNode :: addRight (BNode * pNode)
 template <typename T>
 void BST<T> :: BNode :: addLeft (const T & t)
 {
-
+   
 }
 
 /******************************************************
