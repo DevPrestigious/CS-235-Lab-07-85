@@ -46,10 +46,10 @@ public:
    //
 
    BST() : root(nullptr), numElements(0) {}                                                                          //Default Constructor
-   BST(const BST &  rhs) : root(nullptr), numElements(0) { *this = rhs; }                                            //Copy constructor - Missing 2
+   BST(const BST &  rhs) : root(nullptr), numElements(0) { /* *this = &rhs;*/ }                                            //Copy constructor - Missing 2
    BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor - Missing 1part of 1
    BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
-   ~BST() {clear();}                                                                                                 //Deconstructor
+   ~BST() { clear(); }                                                                                                 //Deconstructor
 
    //
    // Assign - Steve
@@ -160,6 +160,7 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 {
     // No increase in % yet
 
+    // ATTEMPT #1
     //// Source is Empty
     //if (!rhs.root) {
     //    clear();
@@ -176,7 +177,21 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
     //if (this->root->pRight)
     //    this->root->pRight->pParent = this->root;
     //if (this->root->pLeft)
-    //    this->root->pLeft->pParent = this->root;
+    //    this->root->pLeft->pParent = this->root; 
+
+
+    // ATTEMPT #2
+    /*if (this != &rhs)
+    {
+        BST <T> ptr = rhs;
+        clear();
+        root = ptr.root;
+        ptr.root = nullptr;
+    }*/
+
+    // ATTEMPT #3
+
+    
 
     return *this;
 }
@@ -188,8 +203,8 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 template <typename T>
 BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 {
-    // No increase in % yet
-    if (il.size() == 0)
+    // ATTEMPT #1
+    /*if (il.size() == 0)
     {
         clear();
         return *this;
@@ -201,6 +216,17 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
         root.insert(* itRHS);
         ++itRHS;
         numElements++;
+    }*/
+
+    // ATTEMPT #2 -- No % increase yet, but with insert done it might
+    /*clear()
+     FOREACH t IN rhs
+     insert(t)
+     RETURN *this
+    */
+    clear();
+    for (T t : il) {
+        insert(t);
     }
     
     return *this;
@@ -225,7 +251,8 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
-    if (rhs.root == nullptr) {
+    // ATTEMPT #1
+    /*if (rhs.root == nullptr) {
         rhs.root = root = nullptr;
         rhs.numElements = numElements = 0;
         return;
@@ -237,10 +264,12 @@ void BST <T> :: swap (BST <T>& rhs)
     root = tempRoot;
     size_t tempElements = rhs.numElements;
     rhs.numElements = numElements;
-    numElements = tempElements;
+    numElements = tempElements;*/
     
     // GOING TO HAVE TO LOOP THROUGH BNODE ELEMENTS
 
+    // ATTEMPT #2
+    
 }
 
 /*****************************************************
