@@ -158,7 +158,22 @@ public:
 template <typename T>
 BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 {
-   return *this;
+    if (rhs.size() == 0)
+    {
+        clear();
+        return *this;
+    }
+
+    /*const int* itRHS = rhs.begin();
+    while (itRHS != rhs.end())
+    {
+        root.insert(*itRHS);
+        ++itRHS;
+        numElements++;
+    }
+    root = rhs.root;
+    numElements = rhs.numElements;*/
+    return *this;
 }
 
 /*********************************************
@@ -168,7 +183,21 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 template <typename T>
 BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 {
-   return *this;
+    if (il.size() == 0)
+    {
+        clear();
+        return *this;
+    }
+
+    const int* itRHS = il.begin();
+    while (itRHS != il.end())
+    {
+        root.insert(* itRHS);
+        ++itRHS;
+        numElements++;
+    }
+    
+    return *this;
 }
 
 /*********************************************
@@ -178,25 +207,34 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 template <typename T>
 BST <T> & BST <T> :: operator = (BST <T> && rhs)
 {
-    this->root = rhs->root;
+    root = rhs.root;
     numElements = rhs.numElements;
     return *this;
 }
 
 /*********************************************
- * BST :: SWAP - Needs Verified | Alexander [Creating the tempRoot I believe is what's breaking this, for some reason, spy doesn't like it?]
+ * BST :: SWAP  - Steve
  * Swap two trees
  ********************************************/
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
-   BST <T> ::BNode* tempRoot = new BST <T> :: BNode();
-   rhs.root = root;
+    /*if (rhs.root == nullptr) {
+        rhs.root = root = nullptr;
+        rhs.numElements = numElements = 0;
+        return;
+    }
 
-   root = tempRoot;
-   size_t tempElements = rhs.numElements;
-   rhs.numElements = numElements;
-   numElements = tempElements;
+    BST <T> ::BNode* tempRoot = new BST <T> ::BNode();
+
+    rhs.root = root;
+    root = tempRoot;
+    size_t tempElements = rhs.numElements;
+    rhs.numElements = numElements;
+    numElements = tempElements;*/
+    
+    // GOING TO HAVE TO LOOP THROUGH BNODE ELEMENTS
+
 }
 
 /*****************************************************
@@ -206,7 +244,7 @@ void BST <T> :: swap (BST <T>& rhs)
 template <typename T>
 bool BST <T> :: insert(const T & t, bool keepUnique)
 {
-   return false;
+    return false;
 }
 
 template <typename T>
@@ -243,7 +281,8 @@ T* BST<T>::find(const T& t)
 template <typename T>
 void BST <T> ::clear() noexcept
 {
-
+    root = nullptr;
+    numElements = 0;
 }
 
 
