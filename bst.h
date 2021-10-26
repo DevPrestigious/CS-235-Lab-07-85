@@ -158,21 +158,26 @@ public:
 template <typename T>
 BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 {
-    if (rhs.size() == 0)
-    {
-        clear();
-        return *this;
-    }
+    // No increase in % yet
 
-    /*const int* itRHS = rhs.begin();
-    while (itRHS != rhs.end())
-    {
-        root.insert(*itRHS);
-        ++itRHS;
-        numElements++;
-    }
-    root = rhs.root;
-    numElements = rhs.numElements;*/
+    //// Source is Empty
+    //if (!rhs.root) {
+    //    clear();
+    //    return *this;
+    //}
+
+    //if (rhs.root) {
+    //    this->root->data = rhs.root->data;
+    //    this->root->pRight = rhs.root->pRight;
+    //    this->root->pLeft = rhs.root->pLeft;
+    //}
+
+    //// Setting parent values
+    //if (this->root->pRight)
+    //    this->root->pRight->pParent = this->root;
+    //if (this->root->pLeft)
+    //    this->root->pLeft->pParent = this->root;
+
     return *this;
 }
 
@@ -183,6 +188,7 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 template <typename T>
 BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 {
+    // No increase in % yet
     if (il.size() == 0)
     {
         clear();
@@ -201,7 +207,7 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 }
 
 /*********************************************
- * BST :: ASSIGN-MOVE OPERATOR
+ * BST :: ASSIGN-MOVE OPERATOR - Steve | Finished
  * Move one tree to another
  ********************************************/
 template <typename T>
@@ -219,7 +225,7 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
-    /*if (rhs.root == nullptr) {
+    if (rhs.root == nullptr) {
         rhs.root = root = nullptr;
         rhs.numElements = numElements = 0;
         return;
@@ -231,7 +237,7 @@ void BST <T> :: swap (BST <T>& rhs)
     root = tempRoot;
     size_t tempElements = rhs.numElements;
     rhs.numElements = numElements;
-    numElements = tempElements;*/
+    numElements = tempElements;
     
     // GOING TO HAVE TO LOOP THROUGH BNODE ELEMENTS
 
@@ -345,8 +351,8 @@ void BST <T> :: BNode :: addRight (BNode * pNode)
 template <typename T>
 void BST<T> :: BNode :: addLeft (const T & t)
 {
-
-    pLeft->pLeft->data = t;
+    if(t)
+        this.pLeft->data = new BNode(t);
 }
 
 /******************************************************
@@ -356,7 +362,8 @@ void BST<T> :: BNode :: addLeft (const T & t)
 template <typename T>
 void BST<T> ::BNode::addLeft(T && t)
 {
-
+    if (t)
+        this.pLeft->data = new BNode(t);
 }
 
 /******************************************************
