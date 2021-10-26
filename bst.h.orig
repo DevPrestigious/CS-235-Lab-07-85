@@ -46,7 +46,7 @@ public:
    //
 
    BST() : root(nullptr), numElements(0) {}                                                                          //Default Constructor
-   BST(const BST &  rhs) : root(nullptr), numElements(0) { *this = rhs; }                                            //Copy constructor - Missing 2
+   BST(const BST &  rhs) : root(nullptr), numElements(0) {*this = rhs;}                                              //Copy constructor - Missing 2
    BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor - Missing 1part of 1
    BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
    ~BST() {clear();}                                                                                                 //Deconstructor
@@ -178,9 +178,9 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 template <typename T>
 BST <T> & BST <T> :: operator = (BST <T> && rhs)
 {
-    this->root = rhs->root;
-    numElements = rhs.numElements;
-    return *this;
+    // lhs = rhs;
+    
+   return *this;
 }
 
 /*********************************************
@@ -190,13 +190,23 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
+<<<<<<< HEAD
+    /*BST <T> ::BNode* tempRoot = new BST <T> ::BNode();  
+ 
+    rhs.root = root;
+=======
    BST <T> ::BNode* tempRoot = new BST <T> :: BNode();
    rhs.root = root;
+>>>>>>> 7a7311a353d0ff5f9ea39c5d6a8265f9ecc5afce
 
    root = tempRoot;
    size_t tempElements = rhs.numElements;
    rhs.numElements = numElements;
+<<<<<<< HEAD
+   numElements = tempElements;*/
+=======
    numElements = tempElements;
+>>>>>>> 7a7311a353d0ff5f9ea39c5d6a8265f9ecc5afce
 }
 
 /*****************************************************
@@ -281,9 +291,15 @@ template <typename T>
 void BST <T> :: BNode :: addLeft (BNode * pNode)
 {
     // does not increase % 
+<<<<<<< HEAD
+    BST <T> ::BNode* pAdd = new BST <T> ::BNode();
+    pAdd->pParent = pNode;
+    pNode->pLeft = pAdd;
+=======
    BST <T> ::BNode* pAdd = new BST <T> :: BNode();
    pAdd->pParent = pNode;
    pNode->pLeft = pAdd;
+>>>>>>> 7a7311a353d0ff5f9ea39c5d6a8265f9ecc5afce
 }
 
 /******************************************************
@@ -294,7 +310,11 @@ template <typename T>
 void BST <T> :: BNode :: addRight (BNode * pNode)
 {
     // does not increase %
+<<<<<<< HEAD
+    BST <T> ::BNode* pAdd = new BST <T> ::BNode();
+=======
    BST <T> ::BNode* pAdd = new BST <T> :: BNode();
+>>>>>>> 7a7311a353d0ff5f9ea39c5d6a8265f9ecc5afce
     pAdd->pParent = pNode;
     pNode->pRight = pAdd;
 }
