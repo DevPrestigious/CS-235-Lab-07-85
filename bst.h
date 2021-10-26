@@ -46,10 +46,10 @@ public:
    //
 
    BST() : root(nullptr), numElements(0) {}                                                                          //Default Constructor
-   BST(const BST &  rhs) : root(nullptr), numElements(0) { /* *this = &rhs;*/ }                                            //Copy constructor - Missing 2
+   BST(const BST& rhs) : root(nullptr), numElements(0) { /* *this = &rhs;*/ }                                        //Copy constructor - Missing 2
    BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor - Missing 1part of 1
    BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
-   ~BST() { clear(); }                                                                                                 //Deconstructor
+   ~BST() { clear(); }                                                                                               //Deconstructor
 
    //
    // Assign - Steve
@@ -279,6 +279,7 @@ void BST <T> :: swap (BST <T>& rhs)
     auto tempRoot = rhs.root;
     rhs.root = root;
     root = tempRoot;
+
     auto tempElements = rhs.numElements;
     rhs.numElements = numElements;
     numElements = tempElements; 
