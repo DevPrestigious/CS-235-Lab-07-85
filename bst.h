@@ -246,8 +246,9 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
     clear();
     /*swap(rhs);*/ // Will re-implement when swap is done
 
-    root = rhs.root;
-    numElements = rhs.numElements;
+    /*root = rhs.root;
+    numElements = rhs.numElements;*/
+
     return *this;
 }
 
