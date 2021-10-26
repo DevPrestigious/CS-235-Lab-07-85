@@ -239,6 +239,9 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 template <typename T>
 BST <T> & BST <T> :: operator = (BST <T> && rhs)
 {
+    clear();
+    /*swap(rhs);*/ // Will re-implement when swap is done
+
     root = rhs.root;
     numElements = rhs.numElements;
     return *this;
@@ -269,6 +272,7 @@ void BST <T> :: swap (BST <T>& rhs)
     // GOING TO HAVE TO LOOP THROUGH BNODE ELEMENTS
 
     // ATTEMPT #2
+    
     
 }
 
