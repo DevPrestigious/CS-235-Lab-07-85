@@ -276,7 +276,12 @@ void BST <T> :: swap (BST <T>& rhs)
     // GOING TO HAVE TO LOOP THROUGH BNODE ELEMENTS
 
     // ATTEMPT #2
-    
+    auto tempRoot = rhs.root;
+    rhs.root = root;
+    root = tempRoot;
+    auto tempElements = rhs.numElements;
+    rhs.numElements = numElements;
+    numElements = tempElements; 
     
 }
 
@@ -303,6 +308,15 @@ bool BST <T> ::insert(T && t, bool keepUnique)
 template <typename T>
 const T* BST<T>::find(const T& t) const
 {
+    /*BST.find(pNode, value)
+     IF pNode = NULL
+     RETURN end()
+     IF pNode.data = value
+     RETURN iterator(pNode)
+     IF value < pNode.date
+     RETURN find(pNode.pLeft)
+     ELSE
+     RETURN find(pNode.pRight)*/
    return nullptr;
 }
 
