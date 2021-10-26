@@ -13,7 +13,7 @@
  *    This will contain the class definition of:
  *        BST                 : A class that represents a binary search tree
  * Author
- *    Alexander Dohms, Stephen Costigan
+ *    Alexander Dohms, Stephen Costigan 
  ************************************************************************/
 
 #pragma once
@@ -46,13 +46,13 @@ public:
    //
 
    BST() : root(nullptr), numElements(0) {}                                                                          //Default Constructor
-   BST(const BST &  rhs) : root(nullptr), numElements(0) {*this = rhs;}                                              //Copy constructor
-   BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor
+   BST(const BST &  rhs) : root(nullptr), numElements(0) {*this = rhs;}                                              //Copy constructor - Missing 2
+   BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor - Missing 1part of 1
    BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
    ~BST() {clear();}                                                                                                 //Deconstructor
 
    //
-   // Assign
+   // Assign - Steve
    //
 
    BST & operator = (const BST &  rhs);
@@ -61,21 +61,21 @@ public:
    void swap(BST & rhs);
 
    //
-   // Access
+   // Access - Shaun
    //
 
    const T* find(const T& t) const;
    T* find(const T& t);
 
    // 
-   // Insert
+   // Insert - Shaun
    //
 
    bool insert(const T&  t, bool keepUnique = false);
    bool insert(      T&& t, bool keepUnique = false);
 
    //
-   // Remove
+   // Remove - Jon
    // 
 
    void clear() noexcept;
@@ -178,6 +178,8 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 template <typename T>
 BST <T> & BST <T> :: operator = (BST <T> && rhs)
 {
+    // lhs = rhs;
+    
    return *this;
 }
 
@@ -188,13 +190,14 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
-//   BST <T> tempRoot = rhs;
-//   rhs.root = root;
-//
-//   root = tempRoot;
-//   size_t tempElements = rhs.numElements;
-//   rhs.numElements = numElements;
-//   numElements = tempElements;
+    /*BST <T> ::BNode* tempRoot = new BST <T> ::BNode();  
+ 
+    rhs.root = root;
+
+   root = tempRoot;
+   size_t tempElements = rhs.numElements;
+   rhs.numElements = numElements;
+   numElements = tempElements;*/
 }
 
 /*****************************************************
@@ -279,7 +282,7 @@ template <typename T>
 void BST <T> :: BNode :: addLeft (BNode * pNode)
 {
     // does not increase % 
-    BST <T> ::BNode* pAdd = new BNode<T>(0);
+    BST <T> ::BNode* pAdd = new BST <T> ::BNode();
     pAdd->pParent = pNode;
     pNode->pLeft = pAdd;
 }
@@ -292,7 +295,7 @@ template <typename T>
 void BST <T> :: BNode :: addRight (BNode * pNode)
 {
     // does not increase %
-    BST <T> ::BNode* pAdd = new BNode<T>(0);
+    BST <T> ::BNode* pAdd = new BST <T> ::BNode();
     pAdd->pParent = pNode;
     pNode->pRight = pAdd;
 }
@@ -305,6 +308,7 @@ template <typename T>
 void BST<T> :: BNode :: addLeft (const T & t)
 {
 
+    pLeft->pLeft->data = t;
 }
 
 /******************************************************
