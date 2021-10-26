@@ -194,8 +194,8 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
         assign(root, rhs.root)
         numElements = rhs.numElements
     */
-    swap(&rhs);
-    //numElements = rhs.numElements;
+    //swap(&rhs);
+    numElements = rhs.numElements;
 
     return *this;
 }
@@ -230,7 +230,7 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
     */
     clear();
     for (T t : il) {
-        insert(t);
+        insert(t); // WILL PROB INCREASE % WHEN INSERT IS DONE
     }
     
     return *this;
@@ -244,7 +244,7 @@ template <typename T>
 BST <T> & BST <T> :: operator = (BST <T> && rhs)
 {
     clear();
-    /*swap(rhs);*/ // Will re-implement when swap is done
+    swap(rhs); 
 
     /*root = rhs.root;
     numElements = rhs.numElements;*/
