@@ -190,14 +190,13 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
-    /*BST <T> ::BNode* tempRoot = new BST <T> ::BNode();  
- 
-    rhs.root = root;
+   BST <T> ::BNode* tempRoot = new BST <T> :: BNode();
+   rhs.root = root;
 
    root = tempRoot;
    size_t tempElements = rhs.numElements;
    rhs.numElements = numElements;
-   numElements = tempElements;*/
+   numElements = tempElements;
 }
 
 /*****************************************************
@@ -282,9 +281,9 @@ template <typename T>
 void BST <T> :: BNode :: addLeft (BNode * pNode)
 {
     // does not increase % 
-    BST <T> ::BNode* pAdd = new BST <T> ::BNode();
-    pAdd->pParent = pNode;
-    pNode->pLeft = pAdd;
+   BST <T> ::BNode* pAdd = new BST <T> :: BNode();
+   pAdd->pParent = pNode;
+   pNode->pLeft = pAdd;
 }
 
 /******************************************************
@@ -295,7 +294,7 @@ template <typename T>
 void BST <T> :: BNode :: addRight (BNode * pNode)
 {
     // does not increase %
-    BST <T> ::BNode* pAdd = new BST <T> ::BNode();
+   BST <T> ::BNode* pAdd = new BST <T> :: BNode();
     pAdd->pParent = pNode;
     pNode->pRight = pAdd;
 }
