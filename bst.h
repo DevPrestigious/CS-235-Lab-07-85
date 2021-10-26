@@ -13,7 +13,7 @@
  *    This will contain the class definition of:
  *        BST                 : A class that represents a binary search tree
  * Author
- *    Alexander Dohms
+ *    Alexander Dohms, Stephen Costigan
  ************************************************************************/
 
 #pragma once
@@ -113,8 +113,8 @@ public:
    // Construct
    //
     BNode() : pLeft(nullptr), pRight(nullptr), pParent(nullptr), data(T()) {}               // Default Constructor
-    BNode(const T& t) : pParent(nullptr), pLeft(nullptr), pRight(nullptr), data(t) {}      // Copy Constructor
-    BNode(T&& t) : pLeft(nullptr), pRight(nullptr), data(std::move(t)) {}                  // Move Constructor
+    BNode(const T& t) : pParent(nullptr), pLeft(nullptr), pRight(nullptr), data(t) {}       // Copy Constructor
+    BNode(T&& t) : pLeft(nullptr), pRight(nullptr), data(std::move(t)) {}                   // Move Constructor
 
    //
    // Insert
@@ -278,7 +278,10 @@ bool BST <T> ::erase(const T& t)
 template <typename T>
 void BST <T> :: BNode :: addLeft (BNode * pNode)
 {
-   
+    // does not increase % 
+    BST <T> ::BNode* pAdd = new BNode<T>(0);
+    pAdd->pParent = pNode;
+    pNode->pLeft = pAdd;
 }
 
 /******************************************************
@@ -288,7 +291,10 @@ void BST <T> :: BNode :: addLeft (BNode * pNode)
 template <typename T>
 void BST <T> :: BNode :: addRight (BNode * pNode)
 {
-
+    // does not increase %
+    BST <T> ::BNode* pAdd = new BNode<T>(0);
+    pAdd->pParent = pNode;
+    pNode->pRight = pAdd;
 }
 
 /******************************************************
@@ -298,7 +304,7 @@ void BST <T> :: BNode :: addRight (BNode * pNode)
 template <typename T>
 void BST<T> :: BNode :: addLeft (const T & t)
 {
-   
+
 }
 
 /******************************************************
