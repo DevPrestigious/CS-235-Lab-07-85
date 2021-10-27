@@ -340,8 +340,17 @@ T* BST<T>::find(const T& t)
 template <typename T>
 void BST <T> ::clear() noexcept
 {
-    root = nullptr;
-    numElements = 0;
+   // I'm calling on BNode's functions improperly here, but I don't know how to fix it.
+   
+   /*if (root == nullptr)
+   {
+      return;
+   }
+
+   clear(BNode->pLeft);
+   clear(BNode->pRight);
+   delete root;
+   root = nullptr;*/
 }
 
 
