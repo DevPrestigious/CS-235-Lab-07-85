@@ -46,7 +46,7 @@ public:
    //
 
    BST() : root(nullptr), numElements(0) {}                                                                          //Default Constructor
-   BST(const BST& rhs) : root(nullptr), numElements(0) { *this = rhs; }                                              //Copy constructor 
+   BST(const BST& rhs) : numElements(0), root(nullptr) { *this = rhs; }                                              //Copy constructor 
    BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor
    BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
    ~BST() { 
@@ -240,14 +240,16 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 }
 
 /*********************************************
- * BST :: ASSIGN-MOVE OPERATOR - Steve | Finished
+ * BST :: ASSIGN-MOVE OPERATOR - Steve | Finished?
  * Move one tree to another
  ********************************************/
 template <typename T>
 BST <T> & BST <T> :: operator = (BST <T> && rhs)
 {
-    clear();
-    swap(rhs); 
+    root->clear(root);
+    if (rhs.root != nullptr)
+        swap(rhs);
+
 
     return *this;
 }
