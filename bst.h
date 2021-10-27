@@ -131,8 +131,8 @@ public:
    // 
    // Status
    //
-   bool isRightChild(BNode * pNode) const { return pNode->pParent > pParent; } // DON'T KNOW IF IT CHANGES ANYTHING
-   bool isLeftChild( BNode * pNode) const { return pNode->pParent < pParent; } // <-/
+   bool isRightChild(BNode* pNode) const { return pNode->data > pNode->pParent->data; } // DON'T KNOW IF IT CHANGES ANYTHING
+   bool isLeftChild (BNode* pNode) const { return pNode->data < pNode->pParent->data; } // <-/
 
    //
    // Data
@@ -163,23 +163,21 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
     // No increase in % yet
 
     // ATTEMPT #1
-    //// Source is Empty
-    //if (!rhs.root) {
-    //    clear();
-    //    return *this;
-    //}
-
-    //if (rhs.root) {
-    //    this->root->data = rhs.root->data;
-    //    this->root->pRight = rhs.root->pRight;
-    //    this->root->pLeft = rhs.root->pLeft;
-    //}
-
-    //// Setting parent values
-    //if (this->root->pRight)
-    //    this->root->pRight->pParent = this->root;
-    //if (this->root->pLeft)
-    //    this->root->pLeft->pParent = this->root; 
+    /* if (!rhs.root) { // Source is Empty
+        clear();
+        return *this;
+    }
+    if (rhs.root) {
+        this->root->data = rhs.root->data;
+        this->root->pRight = rhs.root->pRight;
+        this->root->pLeft = rhs.root->pLeft;
+    
+    }
+    // Setting parent values
+    if (this->root->pRight)
+        this->root->pRight->pParent = this->root;
+    if (this->root->pLeft)
+        this->root->pLeft->pParent = this->root; */
 
 
     // ATTEMPT #2
@@ -196,7 +194,7 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
         assign(root, rhs.root)
         numElements = rhs.numElements
     */
-    //swap(&rhs);
+
     root->assign(root, rhs.root);
     numElements = rhs.numElements;
 
@@ -274,8 +272,6 @@ void BST <T> :: swap (BST <T>& rhs)
     rhs.numElements = numElements;
     numElements = tempElements;*/
     
-    // MAY HAVE TO LOOP THROUGH BNODE ELEMENTS?
-
     // ATTEMPT #2 (adds to %)
     auto tempRoot = rhs.root;
     rhs.root = root;
