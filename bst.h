@@ -379,9 +379,9 @@ template <typename T>
 void BST <T> :: BNode :: addLeft (BNode * pNode)
 {
     // does not increase % 
-   BST <T> ::BNode* pAdd = new BST <T> :: BNode();
-   pAdd->pParent = pNode;
-   pNode->pLeft = pAdd;
+    if (pNode)
+        pParent = pNode->pParent;
+    pLeft = pNode->pLeft;
 }
 
 /******************************************************
@@ -392,9 +392,9 @@ template <typename T>
 void BST <T> :: BNode :: addRight (BNode * pNode)
 {
     // does not increase %
-   BST <T> ::BNode* pAdd = new BST <T> :: BNode();
-    pAdd->pParent = pNode;
-    pNode->pRight = pAdd;
+    if (pNode)
+        pParent = pNode->pParent;
+    pRight = pNode->pRight;
 }
 
 /******************************************************
@@ -426,7 +426,8 @@ void BST<T> ::BNode::addLeft(T && t)
 template <typename T>
 void BST <T> :: BNode :: addRight (const T & t)
 {
-
+    if (t)
+        this.pRight->data = new BNode(t);
 }
 
 /******************************************************
@@ -436,7 +437,8 @@ void BST <T> :: BNode :: addRight (const T & t)
 template <typename T>
 void BST <T> ::BNode::addRight(T && t)
 {
-
+    if (t)
+        this.pRight->data = new BNode(t);
 }
 
 
