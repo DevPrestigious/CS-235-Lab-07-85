@@ -131,8 +131,8 @@ public:
    // 
    // Status
    //
-   bool isRightChild(BNode * pNode) const { return true; }
-   bool isLeftChild( BNode * pNode) const { return true; }
+   bool isRightChild(BNode * pNode) const { return pNode->pParent > pParent; } // DON'T KNOW IF IT CHANGES ANYTHING
+   bool isLeftChild( BNode * pNode) const { return pNode->pParent < pParent; } // <-/
 
    //
    // Data
@@ -197,9 +197,8 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
         numElements = rhs.numElements
     */
     //swap(&rhs);
-    rhs.root->assign(root, rhs.root);
+    root->assign(root, rhs.root);
     numElements = rhs.numElements;
-
 
     return *this;
 }
@@ -254,7 +253,7 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 }
 
 /*********************************************
- * BST :: SWAP  - Steve
+ * BST :: SWAP  - Steve | Finished
  * Swap two trees
  ********************************************/
 template <typename T>
