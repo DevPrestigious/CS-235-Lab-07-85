@@ -197,8 +197,8 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
         numElements = rhs.numElements
     */
     //swap(&rhs);
-   rhs.root->assign(root, rhs.root);
-   numElements = rhs.numElements;
+    rhs.root->assign(root, rhs.root);
+    numElements = rhs.numElements;
 
 
     return *this;
@@ -250,9 +250,6 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
     clear();
     swap(rhs); 
 
-    /*root = rhs.root;
-    numElements = rhs.numElements;*/
-
     return *this;
 }
 
@@ -278,7 +275,7 @@ void BST <T> :: swap (BST <T>& rhs)
     rhs.numElements = numElements;
     numElements = tempElements;*/
     
-    // MAY HAVE TO LOOP THROUGH BNODE ELEMENTS
+    // MAY HAVE TO LOOP THROUGH BNODE ELEMENTS?
 
     // ATTEMPT #2 (adds to %)
     auto tempRoot = rhs.root;
