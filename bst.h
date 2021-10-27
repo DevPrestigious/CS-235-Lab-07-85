@@ -49,7 +49,9 @@ public:
    BST(const BST& rhs) : root(nullptr), numElements(0) { *this = rhs; }                                              //Copy constructor 
    BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor
    BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
-   ~BST() { clear(); }                                                                                               //Deconstructor
+   ~BST() { 
+       clear(); 
+   }                                                                                               //Deconstructor
 
    //
    // Assign - Steve
@@ -308,13 +310,13 @@ const T* BST<T>::find(const T& t) const
 {
     /*BST.find(pNode, value)
      IF pNode = NULL
-     RETURN end()
+        RETURN end()
      IF pNode.data = value
-     RETURN iterator(pNode)
+        RETURN iterator(pNode)
      IF value < pNode.date
-     RETURN find(pNode.pLeft)
+        RETURN find(pNode.pLeft)
      ELSE
-     RETURN find(pNode.pRight)*/
+        RETURN find(pNode.pRight)*/
    return nullptr;
 }
 
@@ -357,6 +359,7 @@ void BST <T> ::clear() noexcept
 template <typename T>
 bool BST <T> ::erase(const T& t)
 {
+    // CALL ON FIND(T), DELETE AT ITERATOR POINT
    return true;
 }
 
