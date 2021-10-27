@@ -46,7 +46,7 @@ public:
    //
 
    BST() : root(nullptr), numElements(0) {}                                                                          //Default Constructor
-   BST(const BST& rhs) : root(nullptr), numElements(0) { /* *this = &rhs;*/ }                                        //Copy constructor - Missing 2
+   BST(const BST& rhs) : root(nullptr), numElements(0) { *this = rhs; }                                        //Copy constructor - Missing 2
    BST(      BST && rhs) : root(rhs.root), numElements(rhs.numElements) {rhs.root = nullptr; rhs.numElements = 0;}   //Move Constructor - Missing 1part of 1
    BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0) {*this = il;}                             //Initializer List Constructor
    ~BST() { clear(); }                                                                                               //Deconstructor
@@ -126,6 +126,8 @@ public:
    void addLeft(       T && t);
    void addRight(      T && t);
 
+   void assign(BNode* pDest, const BNode* pSrc);
+   void clear(BNode * pThis);
    // 
    // Status
    //
@@ -195,7 +197,9 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
         numElements = rhs.numElements
     */
     //swap(&rhs);
-    numElements = rhs.numElements;
+   rhs.root->assign(root, rhs.root);
+   numElements = rhs.numElements;
+
 
     return *this;
 }
@@ -442,6 +446,56 @@ void BST <T> ::BNode::addRight(T && t)
 
 
 
-} // namespace custom
+ // namespace custom
+/**********************************************
+ * assign
+ * copy the values from pSrc onto pDest preserving
+ * as many of the nodes as possible.
+ *********************************************/
+template <typename T>
+void BST<T> ::BNode::assign(BST<T> ::BNode * pDest, const BST<T> ::BNode * pSrc)
+{
 
+   // Source is Empty
+   if (!pSrc) {
+      clear(pDest);
+      return;
+   }
 
+   // Neither the Source nor Destination are Empty
+   if (pDest && pSrc) {
+      pDest->data = pSrc->data;
+      assign(pDest->pRight, pSrc->pRight);
+      assign(pDest->pLeft, pSrc->pLeft);
+   }
+
+   // Destination is Empty
+   if (!pDest && pSrc) {
+      pDest = new BST::BNode(pSrc->data);
+      assign(pDest->pRight, pSrc->pRight);
+      assign(pDest->pLeft, pSrc->pLeft);
+   }
+
+   // Setting parent values
+   if (pDest->pRight)
+      pDest->pRight->pParent = pDest;
+   if (pDest->pLeft)
+      pDest->pLeft->pParent = pDest;
+}
+
+/*****************************************************
+ * DELETE BINARY TREE
+ * Delete all the nodes below pThis including pThis
+ * using postfix traverse: LRV
+ ****************************************************/
+template <class T>
+void BST<T>::BNode::clear(BNode * pThis)
+{
+   if (!pThis)
+      return;
+
+   clear(pThis->pLeft);
+   clear(pThis->pRight);
+   pThis = NULL;
+}
+}
